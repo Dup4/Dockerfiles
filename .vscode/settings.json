@@ -6,7 +6,9 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "cSpell.words": [
+        "buildx",
         "Dockerfiles",
+        "DOCKERHUB",
         "Shellcheck"
     ],
 }
