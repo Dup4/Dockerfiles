@@ -2,7 +2,7 @@ FROM python:3.10
 
 USER root
 WORKDIR /
-COPY ./ /
+COPY ./bin /
 
 ENV DEBIAN_FRONTEND noninteractive
 
