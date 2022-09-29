@@ -6,7 +6,8 @@ COPY ./ /
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN pip install mycli
+RUN chmod +x /*.sh \
+    && pip install mycli
 
 ENTRYPOINT ["/docker_entry.sh"]
 CMD ["primary"]
