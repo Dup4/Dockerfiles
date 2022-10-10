@@ -11,6 +11,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt update \
     && apt install --no-install-recommends --no-install-suggests -y git \
     && apt clean \
+    && git config --global http.sslverify false \
     && bash /install/install.sh \
     && rm -rf /install
 
