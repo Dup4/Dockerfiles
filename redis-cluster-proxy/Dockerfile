@@ -8,7 +8,10 @@ COPY ./install /install/
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN bash /install/install.sh \
+RUN apt update \
+    && apt install --no-install-recommends --no-install-suggests -y git \
+    && apt clean \
+    && bash /install/install.sh \
     && rm -rf /install
 
 ENTRYPOINT ["/docker_entry.sh"]
