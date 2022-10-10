@@ -6,5 +6,6 @@ else
     CMD="$*"
     ARGS=${CMD#"redis-cluster-proxy"}
 
-    exec redis-cluster-proxy "${ARGS}"
+    # shellcheck disable=SC2086
+    exec redis-cluster-proxy ${ARGS}
 fi
