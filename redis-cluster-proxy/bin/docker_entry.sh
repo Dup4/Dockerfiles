@@ -3,5 +3,8 @@
 if [[ X"${1}" = X"bash" ]]; then
     exec bash
 else
-    exec redis-cluster-proxy "$@"
+    CMD="$*"
+    ARGS=${CMD#"redis-cluster-proxy"}
+
+    exec redis-cluster-proxy "${ARGS}"
 fi
