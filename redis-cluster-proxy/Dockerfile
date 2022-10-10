@@ -2,13 +2,13 @@ FROM debian:11
 
 USER root
 WORKDIR /
+
 COPY ./bin /
-COPY ./install /install
+COPY ./install /install/
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN chmod +x /*.sh \
-    && bash /insall/install.sh \
+RUN bash /install/install.sh \
     && rm -rf /install
 
 ENTRYPOINT ["/docker_entry.sh"]
