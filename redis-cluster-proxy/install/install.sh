@@ -6,7 +6,7 @@ cd "${TOP_DIR}" || exit 1
 
 REDIS_CLUSTER_PROXY="redis-cluster-proxy"
 
-git clone https://github.com/RedisLabs/redis-cluster-proxy.git "${REDIS_CLUSTER_PROXY}" -b 1.0
+git clone https://github.com/Dup4/redis-cluster-proxy.git "${REDIS_CLUSTER_PROXY}"
 
 cd "${TOP_DIR}/${REDIS_CLUSTER_PROXY}" || exit 1
 
