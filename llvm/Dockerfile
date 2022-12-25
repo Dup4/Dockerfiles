@@ -19,4 +19,6 @@ RUN apt update \
     && bash llvm.sh ${VERSION} all \
     && rm llvm.sh
 
+ENV PATH=/usr/lib/llvm-${VERSION}/bin:${PATH}
+
 CMD ["bash"]
