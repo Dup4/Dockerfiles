@@ -1,6 +1,6 @@
-FROM golang:1.18-bullseye
+FROM golang:1.19-bullseye
 
-ARG VERSION="v1.13.2"
+ARG VERSION="v1.14.3"
 
 USER root
 WORKDIR /
