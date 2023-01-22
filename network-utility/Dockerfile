@@ -25,6 +25,7 @@ RUN apt update \
     locales \
     sudo \
     manpages \
+    manpages-dev \
     && apt clean
 
 CMD ["/bin/bash"]
