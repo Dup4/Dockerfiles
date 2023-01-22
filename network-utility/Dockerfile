@@ -23,6 +23,7 @@ RUN apt update \
     jq \
     locales \
     sudo \
+    manpages \
     && apt clean
 
 CMD ["/bin/bash"]
