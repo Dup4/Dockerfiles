@@ -16,6 +16,7 @@ RUN apt update \
     telnet \
     iputils-ping \
     netcat \
+    dnsutils \
     curl \
     wget \
     less \
