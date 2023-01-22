@@ -24,6 +24,7 @@ RUN apt update \
     jq \
     locales \
     sudo \
+    man \
     manpages \
     manpages-dev \
     && apt clean
