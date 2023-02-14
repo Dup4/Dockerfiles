@@ -11,6 +11,7 @@
         "Dockerfiles",
         "DOCKERHUB",
         "mycli",
+        "pgcli",
         "Shellcheck"
     ],
 }
