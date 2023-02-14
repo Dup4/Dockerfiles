@@ -62,7 +62,7 @@ jobs:
           context: ./pgcli
           file: ./pgcli/Dockerfile
           platforms: linux/amd64,linux/arm64
-          tags: dup4/pgcli:${{ github.event.inputs.version }}
+          tags: dup4/pgcli:${{ env.VERSION }}
           build-args: |
             PYTHON_IMAGE_VERSION=${{ env.PYTHON_IMAGE_VERSION }}
             VERSION=${{ env.VERSION }}
