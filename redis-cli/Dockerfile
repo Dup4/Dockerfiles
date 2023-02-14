@@ -8,8 +8,7 @@ COPY ./bin /
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN chmod +x /*.sh \
-    && VERSION=${VERSION} && bash /install.sh
+RUN chmod +x /*.sh
 
 ENTRYPOINT ["/docker_entry.sh"]
 CMD ["primary"]
