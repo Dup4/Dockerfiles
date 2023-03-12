@@ -10,11 +10,7 @@ COPY ./bin /root/bin
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN chmod +x /root/bin/*.sh \
-    && VERSION=${VERSION} && bash /root/bin/install.sh \
-    && cargo build --all --release \
-    && mv /root/code/target/release /root/release \
-    && rm -rf /root/code/target \
-    && cp /root/code/default.toml /root/release
+    && VERSION=${VERSION} && bash /root/bin/install.sh
 
 ENTRYPOINT ["/root/bin/docker_entry.sh"]
 CMD ["primary"]

@@ -10,3 +10,12 @@ else
         -b "${VERSION}" \
         code
 fi
+
+cd code || exit 1
+
+cargo build --all --release
+
+mv /root/code/target/release /root/release
+rm -rf /root/code/target
+
+cp /root/code/default.toml /root/release
