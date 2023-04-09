@@ -12,7 +12,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN chmod +x /*.sh \
     && VERSION=${VERSION} && bash /install.sh \
-    && apt install -y sshpass
+    && apt install --no-install-recommends --no-install-suggests -y sshpass
 
 ENTRYPOINT ["/docker_entry.sh"]
 CMD ["primary"]
