@@ -7,7 +7,7 @@ on:
       python_image_version:
         description: "python image version"
         required: false
-        default: "3.11"
+        default: "3.11-bullseye"
       version:
         description: "version"
         required: true
