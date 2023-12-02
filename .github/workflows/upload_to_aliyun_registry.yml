@@ -23,7 +23,7 @@ on:
         default: "dup4"
 
 jobs:
-  build:
+  upload_to_aliyun_registry:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
