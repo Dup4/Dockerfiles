@@ -42,8 +42,23 @@ jobs:
           username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
           password: ${{ secrets.ALIYUN_REGISTRY_TOKEN }}
 
-      - name: Pull and Push
+      - name: Set Name
+        id: set_name
         run: |
-          docker pull ${{ github.event.inputs.namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }}
-          docker tag ${{ github.event.inputs.namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }} ${{ github.event.inputs.target_registry }}/${{ github.event.inputs.target_namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }}
-          docker push ${{ github.event.inputs.target_registry }}/${{ github.event.inputs.target_namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }}
+          if [ ${{ github.event.inputs.namespace }} != "_" ]; then
+              echo "::set-output name=components::${{ github.event.inputs.components }}"
+          else
+              echo "::set-output name=components::${{ github.event.inputs.namespace }}/${{ github.event.inputs.components }}"
+          fi
+          echo "::set-output name=tag::${{ github.event.inputs.tag }}"
+          echo "::set-output name=target_registry::${{ github.event.inputs.target_registry }}"
+          echo "::set-output name=target_namespace::${{ github.event.inputs.target_namespace }}"
+
+      - name: Pull and Push
+        env:
+          name: ${{ steps.set_name.outputs.name }}
+          tag: ${{ steps.set_name.outputs.tag }}
+        run: |
+          docker pull ${{ env.name}} :${{ env.tag }}
+          docker tag ${{ env.name }}:${{ env.tag }} ${{ github.event.inputs.target_registry }}/${{ github.event.inputs.target_namespace }}/${{ github.event.inputs.components }}:${{ env.tag }}
+          docker push ${{ github.event.inputs.target_registry }}/${{ github.event.inputs.target_namespace }}/${{ github.event.inputs.components }}:${{ env.tag }}
