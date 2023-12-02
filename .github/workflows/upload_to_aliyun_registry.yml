@@ -46,9 +46,9 @@ jobs:
         id: set_name
         run: |
           if [ ${{ github.event.inputs.namespace }} != "_" ]; then
-              echo "::set-output name=components::${{ github.event.inputs.components }}"
+            echo "::set-output name=image::${{ github.event.inputs.namespace }}/${{ github.event.inputs.components }}"
           else
-              echo "::set-output name=components::${{ github.event.inputs.namespace }}/${{ github.event.inputs.components }}"
+            echo "::set-output name=image::${{ github.event.inputs.components }}"
           fi
           echo "::set-output name=tag::${{ github.event.inputs.tag }}"
           echo "::set-output name=target_registry::${{ github.event.inputs.target_registry }}"
@@ -56,9 +56,9 @@ jobs:
 
       - name: Pull and Push
         env:
-          name: ${{ steps.set_name.outputs.name }}
+          image: ${{ steps.set_name.outputs.image }}
           tag: ${{ steps.set_name.outputs.tag }}
         run: |
-          docker pull ${{ env.name}} :${{ env.tag }}
-          docker tag ${{ env.name }}:${{ env.tag }} ${{ github.event.inputs.target_registry }}/${{ github.event.inputs.target_namespace }}/${{ github.event.inputs.components }}:${{ env.tag }}
+          docker pull ${{ env.image}} :${{ env.tag }}
+          docker tag ${{ env.image }}:${{ env.tag }} ${{ github.event.inputs.target_registry }}/${{ github.event.inputs.target_namespace }}/${{ github.event.inputs.components }}:${{ env.tag }}
           docker push ${{ github.event.inputs.target_registry }}/${{ github.event.inputs.target_namespace }}/${{ github.event.inputs.components }}:${{ env.tag }}
