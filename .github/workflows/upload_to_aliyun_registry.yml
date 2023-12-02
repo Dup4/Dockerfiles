@@ -7,6 +7,10 @@ on:
         description: "namespace"
         required: true
         default: "dup4"
+      target_namespace:
+        description: "target_namespace"
+        required: true
+        default: "dup4"
       registry:
         description: "registry"
         required: true
@@ -41,5 +45,5 @@ jobs:
       - name: Pull and Push
         run: |
           docker pull ${{ github.event.inputs.namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }}
-          docker tag ${{ github.event.inputs.namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }} ${{ github.event.inputs.registry }}/${{ github.event.inputs.namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }}
-          docker push ${{ github.event.inputs.registry }}/${{ github.event.inputs.namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }}
+          docker tag ${{ github.event.inputs.namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }} ${{ github.event.inputs.registry }}/${{ github.event.inputs.target_namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }}
+          docker push ${{ github.event.inputs.registry }}/${{ github.event.inputs.target_namespace }}/${{ github.event.inputs.components }}:${{ github.event.inputs.tag }}
