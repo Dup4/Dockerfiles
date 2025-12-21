@@ -5,7 +5,12 @@
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
+    "[shellscript]": {
+        "editor.defaultFormatter": "mkhl.shfmt",
+        "editor.formatOnSave": true
+    },
     "cSpell.words": [
+        "Aliyun",
         "binfmt",
         "buildx",
         "Dockerfiles",
