@@ -15,7 +15,7 @@ RUN apk --update add nodejs build-base libstdc++ gzip git zlib-dev libcurl && \
 # Clone DevDocs repository and checkout specified ref
 RUN git clone https://github.com/freeCodeCamp/devdocs.git . && \
     git checkout ${DEVDOCS_REF} && \
-    bundle install --system --without test
+    bundle install
 
 # Download only specified documentation sets
 # c: C Programming Language
@@ -38,5 +38,4 @@ RUN apk del gzip build-base git zlib-dev && \
     /usr/local/bundle/cache /usr/lib/node_modules
 
 EXPOSE 9292
-
 CMD ["rackup", "-o", "0.0.0.0"]
