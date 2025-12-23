@@ -65,7 +65,7 @@ jobs:
           push: true
           context: ./devdocs
           file: ./devdocs/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           build-args: |
             DEVDOCS_REF=${{ github.event.inputs.devdocs_ref }}
           tags: |
