@@ -19,6 +19,7 @@
         "DOCKERHUB",
         "mycli",
         "pgcli",
-        "Shellcheck"
+        "Shellcheck",
+        "xcpc"
     ],
 }
