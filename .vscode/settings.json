@@ -17,8 +17,11 @@
         "devdocs",
         "Dockerfiles",
         "DOCKERHUB",
+        "geoip",
+        "luajit",
         "mycli",
         "pgcli",
+        "RTMP",
         "Shellcheck",
         "xcpc"
     ],
