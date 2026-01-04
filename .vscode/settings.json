@@ -21,6 +21,7 @@
         "luajit",
         "mycli",
         "pgcli",
+        "realip",
         "RTMP",
         "Shellcheck",
         "xcpc"

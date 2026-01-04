@@ -12,11 +12,8 @@ cd "${TOP_DIR}"
 OPENRESTY_VERSION="${OPENRESTY_VERSION:-1.27.1.2}"
 NGINX_RTMP_MODULE_VERSION="${NGINX_RTMP_MODULE_VERSION:-v1.2.2}"
 NGINX_VOD_MODULE_VERSION="${NGINX_VOD_MODULE_VERSION:-1.33}"
-HEADERS_MORE_VERSION="${HEADERS_MORE_VERSION:-v0.39}"
 NGINX_VTS_VERSION="${NGINX_VTS_VERSION:-v0.2.5}"
-NGX_ECHO_VERSION="${NGX_ECHO_VERSION:-v0.64}"
 NGX_GEOIP2_VERSION="${NGX_GEOIP2_VERSION:-3.4}"
-SET_MISC_VERSION="${SET_MISC_VERSION:-v0.33}"
 
 MODULES_DIR="${TOP_DIR}/modules"
 mkdir -p "${MODULES_DIR}"
@@ -34,37 +31,22 @@ echo "Downloading nginx-vod-module ${NGINX_VOD_MODULE_VERSION}..."
 git clone --depth 1 --branch "${NGINX_VOD_MODULE_VERSION}" \
     https://github.com/kaltura/nginx-vod-module.git
 
-# 3. headers-more-nginx-module - HTTP header manipulation
-echo "Downloading headers-more-nginx-module v${HEADERS_MORE_VERSION}..."
-git clone --depth 1 --branch "${HEADERS_MORE_VERSION}" \
-    https://github.com/openresty/headers-more-nginx-module.git
-
-# 4. nginx-module-vts - Virtual host traffic status
+# 3. nginx-module-vts - Virtual host traffic status
 echo "Downloading nginx-module-vts v${NGINX_VTS_VERSION}..."
 git clone --depth 1 --branch "${NGINX_VTS_VERSION}" \
     https://github.com/vozlt/nginx-module-vts.git
 
-# 5. echo-nginx-module - Echo directive for debugging
-echo "Downloading echo-nginx-module v${NGX_ECHO_VERSION}..."
-git clone --depth 1 --branch "${NGX_ECHO_VERSION}" \
-    https://github.com/openresty/echo-nginx-module.git
-
-# 6. ngx_brotli - Brotli compression
+# 4. ngx_brotli - Brotli compression
 echo "Downloading ngx_brotli..."
 git clone --depth 1 https://github.com/google/ngx_brotli.git
 cd ngx_brotli
 git submodule update --init --recursive
 cd "${MODULES_DIR}"
 
-# 7. ngx_http_geoip2_module - GeoIP2 database support
+# 5. ngx_http_geoip2_module - GeoIP2 database support
 echo "Downloading ngx_http_geoip2_module ${NGX_GEOIP2_VERSION}..."
 git clone --depth 1 --branch "${NGX_GEOIP2_VERSION}" \
     https://github.com/leev/ngx_http_geoip2_module.git
-
-# 8. set-misc-nginx-module - Additional set directives
-echo "Downloading set-misc-nginx-module v${SET_MISC_VERSION}..."
-git clone --depth 1 --branch "${SET_MISC_VERSION}" \
-    https://github.com/openresty/set-misc-nginx-module.git
 
 echo "=== Downloading OpenResty source ==="
 cd "${TOP_DIR}"
