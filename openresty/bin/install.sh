@@ -91,17 +91,12 @@ echo "=== Configuring OpenResty ==="
     --with-stream_ssl_module \
     --with-stream_ssl_preread_module \
     --with-stream_realip_module \
-    --with-luajit \
-    --with-http_geoip_module \
     --with-http_image_filter_module \
     --add-module="${MODULES_DIR}/nginx-rtmp-module" \
     --add-module="${MODULES_DIR}/nginx-vod-module" \
-    --add-module="${MODULES_DIR}/headers-more-nginx-module" \
     --add-module="${MODULES_DIR}/nginx-module-vts" \
-    --add-module="${MODULES_DIR}/echo-nginx-module" \
     --add-module="${MODULES_DIR}/ngx_brotli" \
     --add-module="${MODULES_DIR}/ngx_http_geoip2_module" \
-    --add-module="${MODULES_DIR}/set-misc-nginx-module" \
     -j"$(nproc)"
 
 echo "=== Building OpenResty ==="
