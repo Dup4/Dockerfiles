@@ -75,6 +75,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zlib1g \
     libbrotli1 \
     curl \
+    perl \
     && rm -rf /var/lib/apt/lists/* \
     && /usr/local/openresty/bin/opm get ledgetech/lua-resty-http
 
