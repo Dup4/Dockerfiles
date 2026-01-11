@@ -64,6 +64,7 @@ COPY ./bin/docker_entry.sh /docker_entry.sh
 
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    tzdata \
     ca-certificates \
     libgd3 \
     libgeoip1t64 \
@@ -85,10 +86,7 @@ RUN chmod +x /docker_entry.sh \
     && mkdir -p /var/log/nginx \
     && mkdir -p /var/cache/nginx \
     && mkdir -p /etc/nginx/conf.d \
-    && chown -R nginx:nginx /var/log/nginx /var/cache/nginx \
-    # forward request and error logs to docker log collector
-    && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
+    && chown -R nginx:nginx /var/log/nginx /var/cache/nginx
 
 # Set PATH
 ENV PATH=/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin:/usr/local/openresty/luajit/bin:$PATH
