@@ -1,4 +1,4 @@
-name: Build xcpc-tools
+name: Build icpc-live
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
       repo:
         description: "Git repository URL"
         required: true
-        default: "https://github.com/Dup4/xcpc-tools.git"
+        default: "https://github.com/icpc/live-v3.git"
       ref:
         description: "Git ref (branch, tag, or commit)"
         required: true
@@ -17,7 +17,7 @@ on:
         default: "latest"
 
 env:
-  DOCKERFILE_PATH: xcpc-tools/Dockerfile
+  DOCKERFILE_PATH: icpc-live/Dockerfile
 
 jobs:
   build:
@@ -65,16 +65,17 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         env:
-          image_name: xcpc-tools
+          image_name: icpc-live
           tag: ${{ github.event.inputs.tag }}
         with:
           push: true
-          context: ./xcpc-tools
-          file: ./xcpc-tools/Dockerfile
+          context: ./icpc-live
+          file: ./icpc-live/Dockerfile
           platforms: linux/amd64
           build-args: |
             REPO=${{ github.event.inputs.repo }}
             REF=${{ github.event.inputs.ref }}
+            BUILD_VERSION=${{ github.event.inputs.tag }}
           tags: |
             dup4/${{ env.image_name }}:${{ env.tag }}
             registry.cn-shanghai.aliyuncs.com/dup4/${{ env.image_name }}:${{ env.tag }}
