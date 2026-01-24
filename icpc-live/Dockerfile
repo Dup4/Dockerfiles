@@ -37,9 +37,7 @@ RUN --mount=type=cache,target=/root/.gradle \
 
 # Extract release zip to /app
 RUN mkdir -p /app && \
-    unzip -q artifacts/live-v3-*.zip -d /app && \
-    mv /app/live-v3-*/* /app/ && \
-    rmdir /app/live-v3-*
+    unzip -q artifacts/live-v3-*.zip -d /app
 
 # ============================================
 # Stage 2: Runtime - Minimal production image
@@ -53,25 +51,21 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
-    tzdata \
-    && rm -rf /var/lib/apt/lists/*
-
-# Set up directories
-RUN mkdir -p /config
+    tzdata && \
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir -p /config
 
 # Copy application from builder
 COPY --from=builder /app /app
-RUN chmod +x /app/bin/*
 
 # Environment configuration
 ENV CONFIG_DIR="/config"
 ENV APP_PORT="8080"
 ENV TZ="UTC"
 
-EXPOSE 8080
-VOLUME ["/config"]
-
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD curl -sf http://localhost:${APP_PORT}/ || exit 1
 
-CMD ["bash", "-c", "sleep 86400"]
+EXPOSE 8080
+VOLUME ["/config"]
+CMD ["/bin/bash"]
