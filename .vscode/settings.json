@@ -21,10 +21,12 @@
         "icpc",
         "luajit",
         "mycli",
+        "noninteractive",
         "pgcli",
         "realip",
         "RTMP",
         "Shellcheck",
+        "tzdata",
         "xcpc"
     ],
 }
