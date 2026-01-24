@@ -18,6 +18,7 @@
         "Dockerfiles",
         "DOCKERHUB",
         "geoip",
+        "icpc",
         "luajit",
         "mycli",
         "pgcli",
