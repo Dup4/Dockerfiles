@@ -1,0 +1,77 @@
+name: Build frp
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "frp git tag"
+        required: true
+        default: "v0.67.0"
+      tag:
+        description: "image tag"
+        required: true
+        default: "latest"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image_name: frpc
+            dockerfile: ./frp/Dockerfile-frpc
+          - image_name: frps
+            dockerfile: ./frp/Dockerfile-frps
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v3
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: all
+
+      - name: Available platforms
+        run: echo ${{ steps.qemu.outputs.platforms }}
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Inspect builder
+        run: |
+          echo "Name:      ${{ steps.buildx.outputs.name }}"
+          echo "Endpoint:  ${{ steps.buildx.outputs.endpoint }}"
+          echo "Status:    ${{ steps.buildx.outputs.status }}"
+          echo "Flags:     ${{ steps.buildx.outputs.flags }}"
+          echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Login to ALiYun Shanghai Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: registry.cn-shanghai.aliyuncs.com
+          username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
+          password: ${{ secrets.ALIYUN_REGISTRY_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          context: ./frp
+          file: ${{ matrix.dockerfile }}
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            VERSION=${{ github.event.inputs.version }}
+          tags: |
+            dup4/${{ matrix.image_name }}:${{ github.event.inputs.tag }}
+            registry.cn-shanghai.aliyuncs.com/dup4/${{ matrix.image_name }}:${{ github.event.inputs.tag }}
