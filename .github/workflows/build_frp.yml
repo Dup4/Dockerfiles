@@ -6,7 +6,7 @@ on:
       version:
         description: "frp git tag"
         required: true
-        default: "v0.67.0"
+        default: "v0.68.0"
       tag:
         description: "image tag"
         required: true

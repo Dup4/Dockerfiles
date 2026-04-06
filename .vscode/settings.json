@@ -19,6 +19,8 @@
         "devdocs",
         "Dockerfiles",
         "DOCKERHUB",
+        "frpc",
+        "frps",
         "geoip",
         "icpc",
         "luajit",
