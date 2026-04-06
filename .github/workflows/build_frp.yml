@@ -10,7 +10,7 @@ on:
       tag:
         description: "image tag"
         required: true
-        default: "latest"
+        default: "v0.68.0"
 
 jobs:
   build:
