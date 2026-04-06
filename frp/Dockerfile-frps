@@ -1,14 +1,14 @@
 FROM golang:1.25 AS source
 
-ARG VERSION=v0.67.0
+ARG VERSION=v0.68.0
 ARG REPO=https://github.com/fatedier/frp.git
 
 WORKDIR /src
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends git ca-certificates && \
-    git clone --depth=1 --branch "${VERSION}" "${REPO}" frp && \
-    rm -rf /var/lib/apt/lists/*
+apt-get install -y --no-install-recommends git ca-certificates && \
+git clone --depth=1 --branch "${VERSION}" "${REPO}" frp && \
+rm -rf /var/lib/apt/lists/*
 
 FROM node:22 AS web-builder
 
