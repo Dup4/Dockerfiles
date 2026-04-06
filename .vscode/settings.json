@@ -6,8 +6,10 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "[shellscript]": {
-        "editor.defaultFormatter": "mkhl.shfmt",
-        "editor.formatOnSave": true
+        "editor.defaultFormatter": "mkhl.shfmt"
+    },
+    "[dockerfile]": {
+        "editor.defaultFormatter": "docker.docker"
     },
     "cSpell.words": [
         "Aliyun",
