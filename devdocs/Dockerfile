@@ -1,4 +1,4 @@
-FROM ruby:3.4.8-alpine
+FROM ruby:3.4.4-alpine
 
 # DevDocs repository reference (branch, tag, or commit SHA)
 ARG DEVDOCS_REF=main
