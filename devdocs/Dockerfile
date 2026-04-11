@@ -14,7 +14,7 @@ RUN apk --update add nodejs build-base libstdc++ gzip git zlib-dev libcurl && \
     git checkout ${DEVDOCS_REF} && \
     gem install bundler && \
     bundle install && \
-    sed -i "s/set :default_docs, %w(css dom html http javascript)/set :default_docs, %w(c cpp kotlin~1.9 openjdk~21 python~3.9)/" lib/app.rb && \
+    sed -i "s|set :default_docs, %w(css dom html http javascript)|set :default_docs, %w(c cpp kotlin~1.9 openjdk~21 python~3.9)|" lib/app.rb && \
     sed -i "s|set :docs_origin, '//documents.devdocs.io'|set :docs_origin, '//devdocs.io'|" lib/app.rb && \
     thor docs:download c cpp kotlin~1.9 openjdk~21 python~3.9 && \
     thor assets:compile && \
