@@ -71,7 +71,7 @@ jobs:
           push: true
           context: ./icpc-live
           file: ./icpc-live/Dockerfile
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           build-args: |
             REPO=${{ github.event.inputs.repo }}
             REF=${{ github.event.inputs.ref }}
